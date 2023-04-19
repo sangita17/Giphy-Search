@@ -1,0 +1,24 @@
+<div class="flex bg-blue-300 py-4 justify-center items-center top-0 z-100 w-full inset-x-0 border-b border-gray-400 shadow">
+    <input #searchText class="text-gray-700 max-w-xl py-2 px-4 mx-4 shadow border rounded" 
+           type="text"
+           placeholder="GIF Search">
+    <button class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 shadow rounded mx-2"
+            (click)="search(searchText.value)">
+      Search
+    </button>
+    <button class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 shadow rounded"
+            (click)="onLoadMore()">
+      Load More
+    </button>
+  </div>
+  
+  <div class="result-panel">
+    <div *ngFor="let result of giphyService.searchResults$ | async" 
+          class="flex justify-center flex-col w-full h-full shadow rounded bg-gray-300">
+          <div class="container">
+            <img [src]="result.images.fixed_width.url" [alt]="result.title">
+            <div class="overlay"></div>
+            <div class="button"><button (click)="addToStore(result.images.fixed_width.url,result.id,result.title)"> + ADD </button></div>
+          </div>
+    </div>
+  </div>

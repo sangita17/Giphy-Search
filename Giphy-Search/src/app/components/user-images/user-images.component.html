@@ -1,0 +1,32 @@
+<div class="flex bg-blue-300 py-4 justify-center items-center fixed top-0 z-100 w-full inset-x-0 border-b border-gray-400 shadow">
+    USER SAVED GIF IMAGES
+    <input #searchText class="text-gray-700 max-w-xl py-2 px-4 mx-4 shadow border rounded" 
+           type="text"
+           placeholder="GIF Search">
+    <button class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 shadow rounded mx-2"
+            (click)="search(searchText.value)">
+      Search
+    </button>
+    <button class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 shadow rounded mx-2"
+            (click)="reset()">
+      Reset
+    </button>
+    <select #sort (change)="onSelected(sort.value)">
+      <option default>Sort By</option>
+      <option>Latest</option>
+      <option>Oldest</option>
+    </select>
+  </div>
+  
+  <div class="result-panel">
+    <!-- <div class = "panel"> -->
+    <div *ngFor="let result of storedImages" 
+          class="flex justify-center flex-col w-full h-full shadow rounded bg-gray-300">
+          <div class="container">
+            <img [src]="result.url" [alt]="result.id">
+            <div class="overlay"></div>
+            <div class="button"><button (click)="saveImage(result.url,result.id)"> Download </button></div>
+          </div>
+    </div>
+</div>
+  <!-- </div> -->
